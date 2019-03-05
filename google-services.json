@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "770457761337",
+    "firebase_url": "https://twittervideo-8b048.firebaseio.com",
+    "project_id": "twittervideo-8b048",
+    "storage_bucket": "twittervideo-8b048.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770457761337:android:691ce0284f4fb4ab",
+        "android_client_info": {
+          "package_name": "com.shid.twittervideo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770457761337-op077l1j7fc2r3age4067k04es8jae63.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiVwd21vYIR0d2dy64oAYA86x0qklrVHQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

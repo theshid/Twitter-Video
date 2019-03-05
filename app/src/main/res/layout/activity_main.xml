@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fillViewport="true"
+    android:id="@+id/main_layout"
+    tools:context="com.shid.twittervideo.views.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:id="@+id/linearLayout"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="40dp"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorPrimary"
+            android:layout_marginBottom="16dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="@string/tweet_url"
+                android:textColorHint="@color/colorPrimary"
+                android:id="@+id/txt_tweet_url"
+                android:inputType="textUri"
+                android:drawableRight="@drawable/baseline_close_black_18dp"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/download_video"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_margin="12dp"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/btn_round2"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/btn_download"/>
+
+
+            <Button
+                android:id="@+id/btn_paste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/btn_download"
+                android:layout_alignBottom="@+id/btn_download"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/btn_round2"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="@string/paste"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary" />
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:id="@+id/swt_autolisten"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_marginTop="8dp"
+            android:text="@string/enable_disable_autolisten"/>
+
+        <com.mahfa.dnswitch.DayNightSwitch
+            android:layout_width="45dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            android:id="@+id/swt_night"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_marginTop="8dp"
+            android:text="@string/enable_disable_night_mode"/>
+    </LinearLayout>
+
+
+
+
+</ScrollView>
