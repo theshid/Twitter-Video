@@ -57,6 +57,7 @@ public class AutoListenService extends Service {
             Icon icon = Icon.createWithResource(context,R.drawable.ic_stop_black);
             Notification.Action.Builder builder = new Notification.Action.Builder(icon,"STOP",stopAutoPIntent);
 
+
             vNotification = new Notification.Builder(context,GENERAL_CHANNEL)
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setLargeIcon(bitmap)
