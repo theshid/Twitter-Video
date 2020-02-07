@@ -246,6 +246,8 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         alertNoUrl();
                     }
+                } else{
+                    alertNoUrl();
                 }
             }
         });
@@ -405,7 +407,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void alertNoUrl() {
 
-        Toast.makeText(this, "Enter correct URL", Toast.LENGTH_LONG).show();
+        Toast.makeText(this,getResources().getString(R.string.toast_url) , Toast.LENGTH_LONG).show();
     }
 
     //Method call to handle AutoListen feature

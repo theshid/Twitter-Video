@@ -6,6 +6,6 @@
         android:id="@+id/about"
         android:orderInCategory="100"
         android:title="About Twitter Video"
-        app:showAsAction="never"></item>
+        app:showAsAction="never"/>
 
 </menu>

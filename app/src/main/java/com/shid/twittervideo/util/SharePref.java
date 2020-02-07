@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 public class SharePref {
 
-    SharedPreferences mySharePref;
+    private SharedPreferences mySharePref;
 
     public SharePref(Context context) {
         mySharePref = context.getSharedPreferences("filename", Context.MODE_PRIVATE);
@@ -14,7 +14,7 @@ public class SharePref {
     public void setNightMode(Boolean state) {
         SharedPreferences.Editor editor = mySharePref.edit();
         editor.putBoolean("NightMode", state);
-        editor.commit();
+        editor.apply();
     }
 
     public Boolean loadNightMode() {
