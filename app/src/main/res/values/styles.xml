@@ -12,6 +12,7 @@
     <style name="DayTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#2196F3</item>
+        <item name="colorSwitchThumbNormal">#000000</item>
         <item name="colorPrimaryDark">#1976D2</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="backgroundColor">#ffffff</item>
@@ -20,15 +21,16 @@
         <item name="tintColor">#000000</item>
         <item name="buttonColor">#2196F3</item>
         <item name="android:windowAnimationStyle">@style/WindowsAnimationTransition</item>
-        <item name="colorControlNormal">@color/colorAccent</item>
-        <item name="colorControlActivated">@color/colorAccent</item>
-        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="colorControlNormal">#1976D2</item>
+        <item name="colorControlActivated">#1976D2</item>
+        <item name="colorControlHighlight">#1976D2</item>
     </style>
 
     <!-- Dark/Night Mode -->
     <style name="DarkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#212121</item>
+        <item name="colorSwitchThumbNormal">#ffffff</item>
         <item name="colorPrimaryDark">#000000</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="backgroundColor">#000000</item>
@@ -37,9 +39,10 @@
         <item name="tintColor">#ffffff</item>
         <item name="buttonColor">#2196F3</item>
         <item name="android:windowAnimationStyle">@style/WindowsAnimationTransition</item>
-        <item name="colorControlNormal">@color/colorAccent</item>
-        <item name="colorControlActivated">@color/colorAccent</item>
-        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="colorControlNormal">#ff0000</item>
+        <item name="colorControlHighlight">#ff0000</item>
+        <item name="colorControlActivated">#ff0000</item>
+        <item name="android:colorForeground">#ffffff</item>
 
     </style>
 
