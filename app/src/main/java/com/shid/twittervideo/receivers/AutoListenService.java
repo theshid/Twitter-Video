@@ -15,8 +15,10 @@ import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.IBinder;
 import android.provider.Settings;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.NotificationCompat;
+
+import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import android.util.Log;
 import android.widget.Toast;
 
@@ -31,7 +33,7 @@ public class AutoListenService extends Service {
     private Context context;
     private NotificationManager notificationManager;
     private Notification vNotification;
-    private android.support.v4.app.NotificationCompat.Builder vNotification1;
+    private androidx.core.app.NotificationCompat.Builder vNotification1;
     private ClipboardManager mClipboard;
     private ClipboardManager.OnPrimaryClipChangedListener listener;
 
@@ -39,13 +41,11 @@ public class AutoListenService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         Intent openActivityIntent = new Intent(context, MainActivity.class);
-        openActivityIntent.putExtra("service on",true);
+        openActivityIntent.putExtra("service_on",true);
         openActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent openActivityPIntent = PendingIntent.getActivity(context, Constant.AUTO_REQUEST_CODE,openActivityIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-        // FLAG_UPDATE_CURRENT = if the described PendingIntent already exists,
-        // then keep it but its replace its extra data with what is in this new Intent.
 
         Intent stopAutoIntent = new Intent(context,StopAutoListenReceiver.class);
         stopAutoIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -73,18 +73,27 @@ public class AutoListenService extends Service {
             notificationManager.notify(Constant.NOTI_IDENTIFIER,vNotification);
             startForeground(Constant.NOTI_IDENTIFIER,vNotification);
         }else{//for old devices
-            vNotification1 = new NotificationCompat.Builder(context)
+            NotificationCompat.Action action =
+                    new NotificationCompat.Action.Builder(R.drawable.ic_stop_black,
+                            "STOP", stopAutoPIntent)
+                            .build();
+
+
+            NotificationCompat.Builder builder2 = new NotificationCompat.Builder(context, GENERAL_CHANNEL);
+            Notification mNotification = builder2
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setLargeIcon(bitmap)
                     .setContentTitle("AutoListen now activated")
                     .setContentText("Copy tweet URL to trigger download")
                     .setContentIntent(openActivityPIntent)
-                    .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                     .setAutoCancel(true)
-                    .setPriority(NotificationCompat.PRIORITY_MAX)
-                    .addAction(R.drawable.ic_stop_black,"STOP",stopAutoPIntent);
+                    .addAction(action)
+                    .build();
 
-            notificationManager.notify(Constant.NOTI_IDENTIFIER,vNotification1.build());
+            mNotification.flags = Notification.FLAG_NO_CLEAR;
+
+            notificationManager.notify(Constant.NOTI_IDENTIFIER, mNotification);
+            startForeground(Constant.NOTI_IDENTIFIER, mNotification);
 
 
 

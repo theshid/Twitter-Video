@@ -2,25 +2,23 @@ package com.shid.twittervideo.views;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.ClipboardManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.BlendMode;
+import android.graphics.BlendModeColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.IBinder;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -35,8 +33,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.esafirm.rxdownloader.RxDownloader;
-import com.mahfa.dnswitch.DayNightSwitch;
-import com.mahfa.dnswitch.DayNightSwitchListener;
 import com.shid.twittervideo.R;
 import com.shid.twittervideo.util.Constant;
 
@@ -54,11 +50,8 @@ import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.models.Tweet;
 import com.twitter.sdk.android.core.services.StatusesService;
 
-import java.io.UnsupportedEncodingException;
-
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-import it.grabz.grabzit.GrabzItClient;
 import retrofit2.Call;
 
 
@@ -85,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         // sharedPreferences = this.getSharedPreferences("Theme", Context.MODE_PRIVATE);
         //scrollView.setBackgroundColor(sharedPreferences.getInt("Theme",Context.MODE_PRIVATE));
         setUI();
+        checkPref();
         btnClick();
         checkPermission();
         setTwitterConfig();
@@ -108,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             setTheme(R.style.DarkTheme);
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
                 Drawable drawable = ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_cancel_black_24dp);
-                drawable.setColorFilter(getResources().getColor(R.color.colorWhite), PorterDuff.Mode.SRC_ATOP);
+                drawable.setColorFilter(new BlendModeColorFilter(getResources().getColor(R.color.colorWhite),BlendMode.SRC_ATOP));
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     drawable.setTint(ContextCompat.getColor(getApplicationContext(),R.color.colorWhite));
                 }
@@ -118,11 +112,41 @@ public class MainActivity extends AppCompatActivity {
             setTheme(R.style.DayTheme);
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
                 Drawable drawable = ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_cancel_black_24dp);
-                drawable.setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_ATOP);
+                drawable.setColorFilter(new BlendModeColorFilter(getResources().getColor(R.color.colorBlack), BlendMode.SRC_ATOP));
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     drawable.setTint(ContextCompat.getColor(getApplicationContext(),R.color.colorBlack));
                 }
             }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkPendingIntentExtra();
+    }
+
+    private void checkPendingIntentExtra() {
+        Intent intent = getIntent();
+        if (intent.getBooleanExtra("service_on", true)) {
+            Log.d("Fragment","value of intent " + intent.getBooleanExtra("service_on",true));
+
+            sharePref.setSwitch(false);
+            swt_autolisten.setChecked(false);
+            stopAutoService();
+
+
+        }
+    }
+
+    private void checkPref() {
+        sharePref = new SharePref(this);
+        if (sharePref.loadSwitchState()) {
+            swt_autolisten.setChecked(true);
+            startAutoService();
+        } else {
+            swt_autolisten.setChecked(false);
+            stopAutoService();
         }
     }
 
@@ -418,8 +442,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if (isChecked) {
                     startAutoService();
+                    sharePref.setSwitch(true);
                 } else {
                     stopAutoService();
+                    sharePref.setSwitch(false);
                 }
             }
         });

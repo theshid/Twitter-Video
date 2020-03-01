@@ -30,7 +30,7 @@
             android:layout_marginBottom="40dp"
             android:src="@mipmap/ic_launcher" />
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -47,7 +47,7 @@
                 android:inputType="textUri"
                 android:textColor="?attr/textColor"
                 android:textColorHint="@color/colorPrimary" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
