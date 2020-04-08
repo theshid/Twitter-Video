@@ -2,6 +2,10 @@
 
 App to download videos from twitter with multiple features.
 
+| Main Screen |  
+| ----------- |
+|<img src="images/twitter.jpeg" width="300" height="500">|
+
 ## About
 
 - Download Videos from Twitter
